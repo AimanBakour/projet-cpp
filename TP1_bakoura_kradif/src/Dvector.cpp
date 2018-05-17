@@ -27,36 +27,64 @@ Dvector::~Dvector(){
 
 }
 
-/*void Dvector::display(std::ostream& str) const {
+void Dvector::display(std::ostream& str) const {
     str << std::fixed << std::setprecision(2);
     for (int i = 0; i < taille; i++) {
         str << tableau[i] << endl;
     }
-} */
+}
 
 const int Dvector::size() const {
-    return taille;
+  return taille;
 }
 
-void Dvector::fillRandomly(){
-    srand(time(NULL));
-    for (int i = 0; i < taille; i++){
-        tableau[i] = rand()/ (double)RAND_MAX;
-    }
+void Dvector::fillRandomly()
+{
+  srand(time(NULL));
+  for (int i = 0; i < taille; i++){
+    tableau[i] = rand()/ (double)RAND_MAX;
+  }
 }
 
-Dvector::Dvector(Dvector const & dvect) {
-    taille = dvect.size();
-    tableau = new double[taille];
-    for (int i = 0; i < taille; i++) {
-        tableau[i] = dvect.tableau[i];
-    }
+Dvector::Dvector(const Dvector & dvect) {
+  cout << "Appel du constructeur par recopie\n";
+  taille = dvect.size();
+  tableau = new double[taille];
+  for (int i = 0; i < taille; i++) {
+    tableau[i] = dvect.tableau[i];
+  }
 }
 
 Dvector::Dvector(std::string nomFichier) {
-    ifstream monFlux(nomFichier.c_str());
-    if (monFlux) {
-        double nombre = 0.;
-        taille = 0;
+  cout << "Appel du constructeur par lecture d'un fichier\n";
+  ifstream monFlux(nomFichier.c_str());
+  if (monFlux) {
+    double nombre = 0.;
+    taille = 0;
+
+    //on compte le nombre de lignes <-> nbre de double écrits
+
+    std::string ligne;
+    while (std::getline(monFlux,ligne)) {
+      if (!ligne.empty()) { //on autorise les sauts de ligne
+	taille++;
+      }
     }
+
+    monFlux.close();
+    monFlux.open(nomFichier.c_str());
+
+    tableau = new double[taille];
+
+
+    for (int i = 0; i < taille; i++) {
+      monFlux >> nombre;
+      tableau[i] = nombre;
+
+    }
+    monFlux.close();
+  } else {
+    taille = 0;
+    tableau = new double[taille];
+  }
 }
