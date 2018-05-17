@@ -6,8 +6,8 @@
 //  Copyright © 2018 Kradi farouk. All rights reserved.
 //
 
-#ifndef Dvector_hpp
-#define Dvector_hpp
+#ifndef Dvector_h
+#define Dvector_h
 
 #include <stdio.h>
 #include <iostream>
@@ -19,29 +19,29 @@ using namespace std;
 
 
 class Dvector {
-   
+
 
  protected:
-    
+
         int taille;
         double *tableau;
-    
+
 public:
     Dvector();
-   
+
     Dvector(int taille, double val=0);
-    
-    
+
+
     ~Dvector();
-    
+
     void display(std::ostream& str) const;
-    
+
     const int size() const;
-    
+
     void fillRandomly();
-    
+
     Dvector(Dvector const & dvect);
-    
+
     Dvector(std::string);
 
 

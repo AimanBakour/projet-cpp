@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include "Dvector.hpp"
+#include "Dvector.h"
 
 using namespace std;
 

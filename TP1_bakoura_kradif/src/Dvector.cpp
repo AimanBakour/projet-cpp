@@ -6,7 +6,7 @@
 //  Copyright © 2018 Kradi farouk. All rights reserved.
 //
 
-#include "Dvector.hpp"
+#include "Dvector.h"
 
 
 Dvector::Dvector(){
@@ -24,15 +24,15 @@ Dvector::Dvector(int t, double val){
 
 Dvector::~Dvector(){
     delete[] tableau;
-    
+
 }
 
-void Dvector::display(std::ostream& str) const {
+/*void Dvector::display(std::ostream& str) const {
     str << std::fixed << std::setprecision(2);
     for (int i = 0; i < taille; i++) {
         str << tableau[i] << endl;
     }
-}
+} */
 
 const int Dvector::size() const {
     return taille;
